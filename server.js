@@ -5,7 +5,7 @@ const express = require('express');
 
 const app = express();
 
-const Server = app.listen(5050, listening);
+const Server = app.listen(8080, listening);
 
 
 function listening(){
@@ -15,8 +15,14 @@ function listening(){
 app.use(express.static('website'));
 
 
-app.get('/name', sendName)
+app.get('/flower/:flower/:num', sendName)
 
 function sendName(request, response){
-    response.send('Jesko');
+    let data = request.params;
+    let num = data.num;
+    reply = "";
+    for (let i = 0; i < data.num; i++) {
+        reply += "I Love " + data.flower + " too!";
+    }
+    response.send(reply);
 }
