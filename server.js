@@ -1,7 +1,8 @@
 console.log('Server is starting');
 
-const { response } = require('express');
 const express = require('express');
+
+const search = require('./search');
 
 const app = express();
 
@@ -15,14 +16,20 @@ function listening(){
 app.use(express.static('website'));
 
 
-app.get('/flower/:flower/:num', sendName)
+app.get('/search/:name/:num', searchfnc)
 
-function sendName(request, response){
+function searchfnc(request, response){
     let data = request.params;
     let num = data.num;
     reply = "";
-    for (let i = 0; i < data.num; i++) {
-        reply += "I Love " + data.flower + " too!";
+    for (let i = 0; i < num; i++) {
+        reply += "I Love " + data.name + " too!<br>";
     }
     response.send(reply);
+}
+
+app.get('/all', sendAll)
+
+function sendAll(request, response) {
+    response.send(search);
 }
