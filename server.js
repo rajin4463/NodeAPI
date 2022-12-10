@@ -2,7 +2,7 @@ console.log('Server is starting');
 
 const express = require('express');
 
-const search = require('./search');
+const addrec = require('./addrecord');
 
 const app = express();
 
@@ -28,8 +28,10 @@ function searchfnc(request, response){
     response.send(reply);
 }
 
-app.get('/all', sendAll)
+app.get('/add/:name/:id', addName)
 
-function sendAll(request, response) {
-    response.send(search);
+function addName(request, response) {
+    addrec.addData(request.params.name, request.params.id)
+    console.log(addrec.reply);
+    response.send(addrec.reply);
 }
