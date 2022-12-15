@@ -16,7 +16,7 @@ app.listen(PORT);
 async function connect() {
     try {
         await mongoose.connect(PATH)
-        console.log('connected to database');
+        console.log('Connected to database...');
     }catch(error){
         console.error(error);
     }

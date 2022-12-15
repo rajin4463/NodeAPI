@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const schema = mongoose.Schema;
 
-const nameidSchema = new schema({
+const shopSchema = new schema({
     name:{
         type: String,
         required: true
@@ -12,5 +12,5 @@ const nameidSchema = new schema({
     }
 },{timestamps: true});
 
-const Shop = mongoose.model('shop', nameidSchema);
+const Shop = mongoose.model('shop', shopSchema);
 module.exports = Shop;

@@ -10,7 +10,7 @@ const Server = app.listen(8080, listening);
 
 
 function listening(){
-    console.log('listening.....');
+    console.log('Listening.....');
 }
 
 app.use(express.static('website'));

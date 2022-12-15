@@ -1,9 +1,12 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+mongoose.set('strictQuery', false);
 const express = require('express');
-const search = require('./models/data');
+const shop = require('./models/data');
 
 const app = express();
+
+let reply = {};
 
 const PATH = process.env.SHOPPATH;
 const PORT = process.env.PORT;
@@ -13,7 +16,7 @@ app.listen(PORT);
 async function connect() {
     try {
         await mongoose.connect(PATH)
-        console.log('connected to database');
+        console.log('Connected to database...');
     }catch(error){
         console.error(error);
     }
@@ -21,14 +24,15 @@ async function connect() {
 
 connect();
 
-function find(parm, findObj){
-    search.find({name: "tony", id:8909}, (error, data)=>{
+async function find({parm1},{parm2}){
+    await shop.find({parm1},null,{parm2}, (error, data)=>{
         if(error){
             console.log(error);
         }else{
             console.log(data);
+            let rep = Object.assign(reply, {data});
         }
     });
 }
 
-find('id', 87);
+find({name: 'Same'}, {id: 5050157})
